@@ -57,10 +57,10 @@ aprob=0
 reprob=0
 alum=int(input("Ingrese la cantidad de alumnos: "))
 for i in range(alum):
-    notas=int(input("Ingrese la cantidad de notas: "))
+    notas=int(input(f"Ingrese la cantidad de notas del alumno {i+1}: "))
     suma=0
     for a in range(notas):
-        n=float(input("Ingrese la nota: "))
+        n=float(input(f"Ingrese la nota {a+1}: "))
         suma=suma+n
     prom=suma/notas
     print("El promedio final es", prom)

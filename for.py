@@ -53,7 +53,8 @@
 # print("La cantidad de vocales es", voca)
 # print("La cantidad de consonantes es", conso)
 
-
+aprob=0
+reprob=0
 alum=int(input("Ingrese la cantidad de alumnos: "))
 for i in range(alum):
     notas=int(input("Ingrese la cantidad de notas: "))

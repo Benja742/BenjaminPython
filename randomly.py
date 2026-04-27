@@ -38,31 +38,55 @@ import time
 #     print("El jugador 3 hizo el tiro mas lejano")
 
 
-p1=input("Ingrese el primer peleador ")
-p2=input("Ingrese el segundo peleador ")
-pv1=100
-pv2=100
-turno=random.randint(1,2)
+# p1=input("Ingrese el primer peleador ")
+# p2=input("Ingrese el segundo peleador ")
+# pv1=100
+# pv2=100
+# turno=random.randint(1,2)
 
-while pv1>0 and pv2>0:
-    if turno%2==0:
-        print(f"Turno de {p1}")
-        atk=random.randint(7,18)
-        print(f"El {p1} ataca con {atk}")
-        pv2-=atk
-        print(f"El hp de {p2} es {pv2}")
-        time.sleep(1)
+# while pv1>0 and pv2>0:
+#     if turno%2==0:
+#         print(f"Turno de {p1}")
+#         atk=random.randint(7,18)
+#         print(f"El {p1} ataca con {atk}")
+#         pv2-=atk
+#         print(f"El hp de {p2} es {pv2}")
+#         time.sleep(1)
+#     else:
+#         print(f"Turno de {p2}")
+#         atk=random.randint(7,18)
+#         print(f"El {p2} ataca con {atk}")
+#         pv1-=atk
+#         print(f"El hp de {p1} es {pv1}")
+#         time.sleep(1)
+#     turno+=1
+#     print(p1, "█"*pv1)
+#     print(p2, "█"*pv2)
+# if pv1>pv2:
+#     print("El ganador es", p1)
+# else:
+#     print("El ganador es", p2)
+
+
+# Adivina el numero
+
+num=random.randint(1,100)
+pos=1
+guess=int(input("Adivine el numero: "))
+while guess<1 or guess>100:
+    print("Numero fuera de rango, intenetelo otra vez")
+    guess=int(input("Adivine el numero: "))
+while pos<5 and guess!=num:
+    if guess>num:
+        print("Te pasaste, el numero es menor")
     else:
-        print(f"Turno de {p2}")
-        atk=random.randint(7,18)
-        print(f"El {p2} ataca con {atk}")
-        pv1-=atk
-        print(f"El hp de {p1} es {pv1}")
-        time.sleep(1)
-    turno+=1
-    print(p1, "█"*pv1)
-    print(p2, "█"*pv2)
-if pv1>pv2:
-    print("El ganador es", p1)
+        print("Te quedaste poco, el numero es mayor")
+    guess=int(input("Adivine el numero: "))
+    while guess<1 or guess>100:
+        print("Numero fuera de rango, intenetelo otra vez")
+        guess=int(input("Adivine el numero: "))
+    pos+=1
+if guess==num:
+    print("Adivinaste el numero, felicidades!")
 else:
-    print("El ganador es", p2)
+    print("Se le acabaron las oportunidades el numero era", num)

@@ -52,7 +52,29 @@ el producto debe tener nombre y precio
 '''
 
 productos=[]
+def mostar_productos():
+    for p in range(len(productos)):
+        print(f"{p+1}.- {productos[p]}")
+def eliminar_productos():
+    try:
+        print("-"*20)
+        elim=int(input("¿Cual elemento quiere remover? "))
+        productos.pop(elim-11)
+    except:
+        print("Producto no encontrado")
+def agregar_productos():
+    nombre=input("Ingrese el nombre del producto: ")
+    precio=int(input("Ingrese el precio del producto: "))
+    nuevo_producto={"nombre":nombre, "precio":precio}
+    productos.append(nuevo_producto)
+def actualizar_productos():
+    print("-"*20)
+    mostar_productos()
+    actualizar=int(input("¿Cual producto quiere actualizar?"))
+    productos[actualizar-1] =input("Ingrese el nuevo nombre: ")
+
 while True:
+    print("-"*20)
     print("1.- Agregar producto")
     print("2.- Mostrar productos")
     print("3.- Eliminar producto")
@@ -61,16 +83,13 @@ while True:
     op=int(input("Seleccione una opcion: "))
     match op:
         case 1:
-            nombre=input("Ingrese el nombre del producto: ")
-            precio=int(input("Ingrese el precio del producto: "))
-            nuevo_producto={"nombre":nombre, "precio":precio}
-            productos.append(nuevo_producto)
+            agregar_productos()
         case 2:
-            print(productos)
+            mostar_productos()
         case 3:
-            print("")
+            eliminar_productos()
         case 4:
-            print("")
+            actualizar_productos()
         case 5:
             print("Saliendo")
             break

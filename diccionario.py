@@ -116,13 +116,13 @@ productosDicc={
 }
 productosDicc[4]={"nombre":"Piña","precio": 3500}
 
-productoslist=[
-   {"nombre:": "Maracuya", "precio": 3000},
-   {"nombre:": "Pera", "precio": 1500},
-   {"nombre:": "Cebolla", "precio": 1200}
-]
+# productoslist=[
+#    # {"nombre:": "Maracuya", "precio": 3000},
+#    # {"nombre:": "Pera", "precio": 1500},
+#    # {"nombre:": "Cebolla", "precio": 1200}
+# ]
 
-
+carrito=[]
 def AgregarProductos():
    Nombre=input("Agrege nombre producto: ")
    precio=int(input("Agrege precio producto: "))
@@ -146,7 +146,35 @@ def ActualizarProductos():
    productosDicc[act]={"nombre": Nombre, "precio": precio}
    print("Actualizado")
 
-def VegetalesMenuDiccionario():
+def comprar():
+    compra=1
+    while compra!=0:
+      MostrarProductos()
+      try:
+         compra=int(input("Cual producto desea comprar? (0 para salir): "))
+         if compra in productosDicc:
+               print(f"Usted ha comprado {productosDicc[compra]['nombre']} por un valor de {productosDicc[compra]['precio']}")
+               carrito.append(productosDicc[compra])
+         elif compra==0:
+            print("Gracias por su compra")
+         else:
+               print("Producto no existe")
+      except ValueError:
+         print("Debe ingresar un número válido")
+
+def boleta():
+    total=0
+    print("-"*30,"0", "-"*30)
+    print("Minimark MR Satan")
+    for p in carrito:
+            print(p["nombre"], "___$", p["precio"])
+            total+=int(p["precio"])
+    iva=total*0.19
+    print(f"El total de su compra es {total} y el IVA es {iva}")
+    print(f"El total a pagar es  {total+iva} ")
+    print("-"*30,"0", "-"*30)
+
+def MenuCompra():
    while True:
       try:
          print("."*20)
@@ -154,7 +182,8 @@ def VegetalesMenuDiccionario():
          print("2.- Eliminar Producto")
          print("3.- Actualizar Producto")
          print("4.- Mostrar Producto")
-         print("5.- Salir")
+         print("5.- Comprar Producto")
+         print("6.- Crear Boleta (Calcula IVA) y salir")
          op=int(input("Seleccione una opcion: "))
          match op:
             case 1:
@@ -166,10 +195,13 @@ def VegetalesMenuDiccionario():
             case 4:
                MostrarProductos()
             case 5:
-               print("Saliendo del programa")
+               comprar()
+            case 6:
+               boleta()
+               print("saliendo")
                break
             case _:
                print("Opcion invalida")
       except Exception as e:
          print("Error",e)
-VegetalesMenuDiccionario()
+MenuCompra()
